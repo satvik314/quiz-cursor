@@ -16,9 +16,10 @@ interface Question {
 interface MinimalistQuizAppProps {
   questions: Question[];
   onResetQuiz: () => void;
+  quizTime: number;
 }
 
-export function MinimalistQuizApp({ questions, onResetQuiz }: MinimalistQuizAppProps) {
+export function MinimalistQuizApp({ questions, onResetQuiz, quizTime }: MinimalistQuizAppProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [userAnswers, setUserAnswers] = useState<string[]>(Array(questions.length).fill(''))
   const [showResults, setShowResults] = useState(false)
@@ -118,10 +119,10 @@ export function MinimalistQuizApp({ questions, onResetQuiz }: MinimalistQuizAppP
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-2xl" // Increased max-width for better layout
+        className="w-full max-w-2xl"
       >
         {!showResults && (
-          <VintageTimer initialTime={300} onTimeUp={handleTimeUp} />
+          <VintageTimer initialTime={quizTime} onTimeUp={handleTimeUp} />
         )}
         
         {/* Progress Bar */}

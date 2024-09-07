@@ -4,18 +4,19 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 interface QuizTopicInputProps {
-  onSubmit: (topic: string, numQuestions: number, instructions: string) => void
+  onSubmit: (topic: string, numQuestions: number, instructions: string, quizTime: number) => void
 }
 
 export function QuizTopicInput({ onSubmit }: QuizTopicInputProps) {
   const [topic, setTopic] = useState('')
   const [numQuestions, setNumQuestions] = useState(5)
   const [instructions, setInstructions] = useState('')
+  const [quizTime, setQuizTime] = useState(60) // Default to 60 seconds (1 minute)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (topic.trim()) {
-      onSubmit(topic.trim(), numQuestions, instructions.trim())
+      onSubmit(topic.trim(), numQuestions, instructions.trim(), quizTime)
     }
   }
 
@@ -48,6 +49,18 @@ export function QuizTopicInput({ onSubmit }: QuizTopicInputProps) {
             max="20"
             value={numQuestions}
             onChange={(e) => setNumQuestions(parseInt(e.target.value))}
+            className="w-full py-3 px-4 bg-gray-100 rounded-lg font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+          />
+        </div>
+        <div>
+          <label htmlFor="quizTime" className="block text-sm font-medium text-gray-700 mb-1">Quiz Time (seconds)</label>
+          <input
+            id="quizTime"
+            type="number"
+            min="30"
+            max="600"
+            value={quizTime}
+            onChange={(e) => setQuizTime(parseInt(e.target.value))}
             className="w-full py-3 px-4 bg-gray-100 rounded-lg font-medium text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
           />
         </div>
