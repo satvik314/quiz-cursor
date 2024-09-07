@@ -38,7 +38,7 @@ export function MinimalistQuizApp({ questions, onResetQuiz }: MinimalistQuizAppP
       console.log('Questions:', questions);
       console.log('User Answers:', userAnswers);
     }
-  }, [showResults]);
+  }, [showResults, questions, userAnswers]);
 
   useEffect(() => {
     console.log('Questions structure:', JSON.stringify(questions, null, 2));
@@ -100,7 +100,7 @@ export function MinimalistQuizApp({ questions, onResetQuiz }: MinimalistQuizAppP
   const handleTimeUp = () => {
     setTimeUp(true)
     setShowResults(true)
-    toast('⏰ Time\'s up!', {
+    toast('⏰ Time&apos;s up!', {
       icon: '⏰',
       position: 'top-center',
       duration: 2000,
@@ -145,7 +145,7 @@ export function MinimalistQuizApp({ questions, onResetQuiz }: MinimalistQuizAppP
             >
               <h2 className="text-4xl font-bold mb-6 text-center text-blue-600">Quiz Results</h2>
               {timeUp && (
-                <p className="text-xl text-red-500 text-center mb-4">Time's up!</p>
+                <p className="text-xl text-red-500 text-center mb-4">Time&apos;s up!</p>
               )}
               <div className="flex justify-center items-center mb-8">
                 <div className="w-40 h-40 rounded-full bg-blue-100 flex items-center justify-center">
