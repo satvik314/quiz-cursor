@@ -43,7 +43,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 flex flex-col items-center justify-center p-4">
-      <h1 className="text-4xl font-bold text-blue-600 mb-8">AI Quiz Generator</h1>
+      {/* <h1 className="text-4xl font-bold text-blue-600 mb-8">AI Quiz Generator</h1> */}
       <div className="flex-grow flex items-center justify-center w-full">
         {!quizTopic ? (
           <QuizTopicInput onSubmit={handleTopicSubmit} />
