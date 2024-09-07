@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { MinimalistQuizApp } from '../components/minimalist-quiz-app'
 import { QuizTopicInput } from '../components/QuizTopicInput'
 import { getQuizQuestions } from './actions'
+import Link from 'next/link'
 
 interface Question {
   question: string;
@@ -41,18 +42,26 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center p-4">
-      {!quizTopic ? (
-        <QuizTopicInput onSubmit={handleTopicSubmit} />
-      ) : loading ? (
-        <div className="text-2xl font-bold text-blue-600">Generating your quiz...</div>
-      ) : error ? (
-        <div className="text-2xl font-bold text-red-500">{error}</div>
-      ) : questions ? (
-        <MinimalistQuizApp questions={questions} onResetQuiz={handleResetQuiz} quizTime={quizTime} />
-      ) : (
-        <div className="text-2xl font-bold text-red-500">An unexpected error occurred. Please try again.</div>
-      )}
+    <main className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 flex flex-col items-center justify-center p-4">
+      <div className="flex-grow flex items-center justify-center w-full">
+        {!quizTopic ? (
+          <QuizTopicInput onSubmit={handleTopicSubmit} />
+        ) : loading ? (
+          <div className="text-2xl font-bold text-blue-600">Generating your quiz...</div>
+        ) : error ? (
+          <div className="text-2xl font-bold text-red-500">{error}</div>
+        ) : questions ? (
+          <MinimalistQuizApp questions={questions} onResetQuiz={handleResetQuiz} quizTime={quizTime} />
+        ) : (
+          <div className="text-2xl font-bold text-red-500">An unexpected error occurred. Please try again.</div>
+        )}
+      </div>
+      <footer className="w-full text-center py-4 text-gray-600">
+        Built by{' '}
+        <Link href="https://www.buildfastwithai.com/genai-course" className="text-blue-600 hover:underline">
+          Build Fast with AI
+        </Link>
+      </footer>
     </main>
   )
 }
