@@ -5,6 +5,7 @@ import { MinimalistQuizApp } from '../components/minimalist-quiz-app'
 import { QuizTopicInput } from '../components/QuizTopicInput'
 import { getQuizQuestions } from './actions'
 import Link from 'next/link'
+import { Github } from 'lucide-react'
 
 interface Question {
   question: string;
@@ -42,8 +43,16 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 flex flex-col items-center justify-center p-4">
-      {/* <h1 className="text-4xl font-bold text-blue-600 mb-8">AI Quiz Generator</h1> */}
+    <main className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 flex flex-col items-center justify-center p-4 relative">
+      <Link 
+        href="https://github.com/satvik314/quiz-cursor"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute top-4 right-4 text-gray-600 hover:text-blue-600 transition-colors"
+      >
+        <Github size={24} />
+      </Link>
+      <h1 className="text-4xl font-bold text-blue-600 mb-8">AI Quiz Generator</h1>
       <div className="flex-grow flex items-center justify-center w-full">
         {!quizTopic ? (
           <QuizTopicInput onSubmit={handleTopicSubmit} />
